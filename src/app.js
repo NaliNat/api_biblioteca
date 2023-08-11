@@ -15,11 +15,15 @@ const autenticacion = auth({
 const app = express();
 app.use(express.json());
 
+// importar router de usuarios
+const usuariosRouter = require("./routes/usuarios");
+
 // Importamos el Router de Libros
 const librosRouter = require("./routes/libros");
 
 //Configuramos el middleware de autenticacion
 app.use("/api/libros", autenticacion, librosRouter);
+app.use("/api/usuarios", autenticacion, usuariosRouter);
 
 app.use(errorHandler);
 
